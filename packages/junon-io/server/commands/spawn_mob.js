@@ -17,6 +17,7 @@ class SpawnMob extends BaseCommand {
       "mapdisplay:[true|false]",
       "taming:[true|false]",
       "attackables:[players|mobs|buildings]",
+	  "team:[team]",
       "ex. /spawnmob guard 1 20 20 goal:4531 status:hostile mapdisplay:true"
     ]
   }
@@ -148,6 +149,12 @@ class SpawnMob extends BaseCommand {
         entityGroup.addChild(mob)
       })
     }
+      if (keyValueMap["team"]) {
+        let team = this.game.getTeam(parseInt(keyValueMap["team"]))
+        if (team) {
+          mob.setOwner(team)
+        }
+      }
   }
 }
 
